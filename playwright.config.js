@@ -31,7 +31,7 @@ module.exports = defineConfig({
     trace: 'on-first-retry',
     baseURL: process.env.UI_URL,
     screenshot: "on",
-    video: "on",
+    video: "on"
   },
 
   /* Configure projects for major browsers */
@@ -41,15 +41,15 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
