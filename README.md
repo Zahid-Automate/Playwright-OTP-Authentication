@@ -13,13 +13,15 @@ Before running the tests, ensure you have the following installed:
 
 1. Clone this repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Zahid-Automate/Playwright-OTP-Authentication.git
    cd <repository-directory>
    ```
 
 2. Install dependencies:
    ```bash
-   npm install
+   npm init playwright@latest
+   npm i dotenv
+   npm install otpauth
    ```
 
 3. Create a `.env` file in the project root to store environment variables:
@@ -28,6 +30,7 @@ Before running the tests, ensure you have the following installed:
    PLAYWRIGHT_PASSWORD=your-password
    OTP_KEY=your-otp-key
    ```
+You can get your OTP Key manually from https://it-tools.tech/otp-generator by using the OTP Key
 
 ## Running the Tests
 
@@ -46,6 +49,7 @@ set TEST_ENV=devNational && npx playwright test login.2fa.spec.js
 ### On Windows PowerShell:
 ```powershell
 $env:TEST_ENV="devNational"; npx playwright test login.2fa.spec.js
+npx playwright test tests/auth/login.2fa.spec.js
 ```
 
 ## Test Workflow
@@ -73,9 +77,9 @@ $env:TEST_ENV="devNational"; npx playwright test login.2fa.spec.js
 Below is the main test script:
 
 ```javascript
-const { generateOTP } = require("@helpers/otp");
-const { LoginPage } = require("@pages");
-const { test, expect } = require("@playwright/test");
+import { generateOTP } from "../../helpers/otp";
+import { LoginPage } from "../../pages/loginPage";
+import { test, expect } from "@playwright/test";
 
 test("Login with 2FA enabled", async ({ page }) => {
   const playwrightEmail = process.env.PLAYWRIGHT_USERNAME;
@@ -90,8 +94,8 @@ test("Login with 2FA enabled", async ({ page }) => {
 
   await loginPage.totp.fill(otpCode);
   await loginPage.verifyTotp.click();
-  expect(await loginPage.navMenu.innerText()).toContain("Testy McTester");
-});
+  expect(await loginPage.navMenu.innerText()).toContain("Mohammed A Zahid");
+})
 ```
 
 ## Troubleshooting
