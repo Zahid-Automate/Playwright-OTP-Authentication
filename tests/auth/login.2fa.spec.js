@@ -15,5 +15,5 @@ test("Login with 2FA enabled", async ({ page }) => {
 
   await loginPage.totp.fill(otpCode);
   await loginPage.verifyTotp.click();
-  expect(await loginPage.navMenu.innerText()).toContain("Mohammed Zahid");
+  expect(await loginPage.navMenu.innerText()).toContain("Mohammed A Zahid");
 })
